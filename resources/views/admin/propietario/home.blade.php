@@ -11,7 +11,17 @@
                         <a href="{{ url('/propietario') }}">
                             <h2>Propietario</h2>
                         </a>
-                        <a href="{{ url('/propietario/add') }}" class="btn btn-success" style="width: 50px;height: 50px;display: grid; place-content: center"><i class="material-icons">&#xE147;</i></a>
+                        <a href="{{ url('/propietario/add') }}" class="btn btn-success"
+                            style="width: 50px;height: 50px;display: grid; place-content: center"><i
+                                class="material-icons">&#xE147;</i></a>
+                    </div>
+                </div>
+                <div class="row filter">
+                    <div class="col-md-12 mt-4">
+                        <div class="input-group">
+                            <input type="search" id="search" class="form-control" class="form-control"
+                                placeholder="Buscar..." oninput="search()">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -20,7 +30,7 @@
                     {{ session('info') }}
                 </div>
             @endif
-            <table class="table table-striped table-hover" style="margin: 50px 0">
+            <table class="table table-striped table-hover" id="table" style="margin: 50px 0">
                 <thead>
                     <tr class="text-center">
                         <th>Nombre</th>
@@ -64,6 +74,26 @@
 @stop
 
 @section('js')
+    <script>
+        function search() {
+            var input = document.getElementById("search").value.toLowerCase();
+            var table = document.getElementById("table");
+            var tr = table.getElementsByTagName("tr");
+            for (var i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    txtValue = txtValue.toLowerCase();
+                    if (txtValue.indexOf(input) > -1) {
+                        //console.log(txtValue);
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
     </script>

@@ -134,7 +134,7 @@ return [
     'usermenu_header_class' => 'bg-success',
     'usermenu_image' => true,
     'usermenu_desc' => true,
-    'usermenu_profile_url' => false,
+    'usermenu_profile_url' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -294,13 +294,18 @@ return [
         [
             'type'         => 'navbar-search',
             'text'         => 'search',
-            'topnav_right' => true,
+            'topnav_right' => false,
         ],
         [
             'type'         => 'fullscreen-widget',
             'topnav_right' => true,
         ],
-
+        ['header' => 'Autenticación'],
+        [
+            'text'        => 'profile',
+            'url'         => '/user/profile',
+            'icon' => 'fas fa-fw fa-user',
+        ],
         // Sidebar items:
         ['header' => 'Menu Taller'],
         [

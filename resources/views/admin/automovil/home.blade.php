@@ -12,7 +12,16 @@
                         <a href="{{ url('/automovil') }}">
                             <h2>Automovil</h2>
                         </a>
-                        <a href="{{ url('/automovil/add') }}" class="btn btn-success" style="width: 50px;height: 50px;display: grid; place-content: center"><i class="material-icons">&#xE147;</i></a>
+                        <a href="{{ url('/automovil/add') }}" class="btn btn-success"
+                            style="width: 50px;height: 50px;display: grid; place-content: center"><i
+                                class="material-icons">&#xE147;</i></a>
+                    </div>
+                </div>
+                <div class="row filter">
+                    <div class="col-md-12 mt-4">
+                        <div class="input-group">
+                            <input type="text" oninput="search()" class="form-control" id="search" placeholder="Buscar..." wire:model="search">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -21,20 +30,7 @@
                     {{ session('info') }}
                 </div>
             @endif
-            {{--
-            Schema::create('automovils', function (Blueprint $table) {
-            $table->id();
-            $table->string('marca');
-            $table->string('modelo');
-            $table->string('color');
-            $table->string('tipo');
-            $table->string('placa');
-            $table->bigInteger('idpropietario')->unsigned();
-
-            $table->foreign('idpropietario')->references('id')->on('propietarios');
-        });
-                --}}
-            <table class="table table-striped table-hover" style="margin: 50px 0">
+            <table class="table table-striped table-hover" id="table" style="margin: 50px 0">
                 <thead>
                     <tr>
                         <th>Marca</th>
@@ -64,8 +60,8 @@
                                         data-toggle="tooltip" data-placement="tooltip" title="Update">&#xE254;</a>
 
                                     <a href='{{ url("/automovil/borrar/{$auto->id}") }}' class="material-icons delete"
-                            data-id="{{ $auto->id }}" data-toggle="tooltip" data-placement="tooltip"
-                            title="Delete">&#xE872;</a>
+                                        data-id="{{ $auto->id }}" data-toggle="tooltip" data-placement="tooltip"
+                                        title="Delete">&#xE872;</a>
 
                                 </td>
                             </tr>
@@ -86,6 +82,26 @@
 @stop
 
 @section('js')
+    <script>
+        function search() {
+            var input = document.getElementById("search").value.toLowerCase();
+            var table = document.getElementById("table");
+            var tr = table.getElementsByTagName("tr");
+            for (var i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    txtValue = txtValue.toLowerCase();
+                    if (txtValue.indexOf(input) > -1) {
+                        //console.log(txtValue);
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
     </script>

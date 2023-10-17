@@ -7,10 +7,11 @@ use App\Models\Propietario;
 
 class PropietarioController extends Controller
 {
-    public function home()
+    // que pase la variable $request por default ""
+    public function home(Request $request)
     {
         $propietario = Propietario::all();
-        return view('admin/propietario/home', ['propietario' => $propietario]);
+        return view('admin/propietario/home', compact('propietario'));
     }
     public function vistaadd()
     {

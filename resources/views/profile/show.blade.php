@@ -1,8 +1,19 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Profile') }}
-        </h2>
+        <div style="display: flex;
+        justify-content: space-between;">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                {{ __('Profile') }}
+            </h2>
+            <button
+                style="    border: 1px solid red;
+            background: red;
+            padding: 10px 35px;
+            color: white;
+            font-size: 20px;
+            text-transform: capitalize;
+            border-radius: 25px;" onclick="window.location.href = '/'">atras</button>
+        </div>
     </x-slot>
 
     <div>

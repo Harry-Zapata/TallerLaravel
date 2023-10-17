@@ -3,12 +3,11 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Dashboard</h1>
+    <h4>Dashboard</h4>
 @stop
 
 @section('content')
-    <p>Bienbenido a la página de administración.</p>
-    <div class="row d-flex justify-content-around gap-3">
+    <div class="row d-flex justify-content-between mx-2 text-center">
         <x-adminlte-info-box class="col-md-5" title="{{ count($propietario) }}" text="Propietarios"
             icon="fas fa-lg fa-user-plus text-info" theme="gradient-info" icon-theme="white" />
         <x-adminlte-info-box class="col-md-5" title="{{ count($auto) }}" text="Autos" icon="fas fa-lg fa-car text-danger"
