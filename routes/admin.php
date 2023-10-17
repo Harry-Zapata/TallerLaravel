@@ -3,10 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\automovilController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PropietarioController;
 
 
-Route::get('', [HomeController::class, 'index']);
+Route::get('', [DashboardController::class, 'index']);
 Route::prefix('propietario')->group(function () {
     Route::get('/', [PropietarioController::class, 'home']);
     Route::get('/add', [PropietarioController::class, 'vistaadd']);
