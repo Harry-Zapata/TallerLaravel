@@ -37,4 +37,40 @@ class AutomovilController extends Controller
         $auto->save();
         return redirect('/automovil')->with('info', 'Automovil Guardado');
     }
+
+    public function update($id)
+    {
+        $auto = Automovil::find($id);
+        $propietario = Propietario::all();
+        return view('admin/automovil/update', compact('auto', 'propietario'));
+    }
+    public function edit(Request $request, $id)
+    {
+        $this->validate($request, [
+            'marca' => 'required',
+            'modelo' => 'required'
+        ]);
+        $data = array(
+            'marca' => $request->input('marca'),
+            'modelo' => $request->input('modelo'),
+            'color' => $request->input('color'),
+            'tipo' => $request->input('tipo'),
+            'placa' => $request->input('placa'),
+            'idpropietario' => $request->input('idpropietario'),
+        );
+        Automovil::where('id', $id)->update($data);
+        return redirect('/automovil')->with('info', 'Automovil Actualizado');
+    }
+
+    public function read($id)
+    {
+        $auto = Automovil::find($id);
+        $propietario = Propietario::all();
+        return view('admin/automovil/read', compact('auto', 'propietario'));
+    }
+    public function delete($id)
+    {
+        Automovil::where('id', $id)->delete();
+        return redirect('/automovil')->with('info', 'Automovil Eliminado');
+    }
 }

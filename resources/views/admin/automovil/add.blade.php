@@ -47,6 +47,7 @@
                     @endforeach
                 </select>
             </div>
+        </div>
             {{-- <div class="form-group">
                 <label>Propietario</label>
                 <select name="idpropietario" class="form-control select2" style="height: 50px" required>

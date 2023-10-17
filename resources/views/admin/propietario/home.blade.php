@@ -22,7 +22,7 @@
             @endif
             <table class="table table-striped table-hover" style="margin: 50px 0">
                 <thead>
-                    <tr>
+                    <tr class="text-center">
                         <th>Nombre</th>
                         <th>Documento</th>
                         <th>Dirección</th>
@@ -31,7 +31,7 @@
                         <th>Acciones</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="text-center">
                     @if (count($propietario) > 0)
                         @foreach ($propietario->all() as $propietario)
                             <tr>
@@ -40,16 +40,11 @@
                                 <td>{{ $propietario->direccion }}</td>
                                 <td>{{ $propietario->telefono }}</td>
                                 <td>{{ $propietario->email }}</td>
-                                <td>
+                                <td class="d-flex justify-content-around">
                                     <a href='{{ url("/propietario/read/{$propietario->id}") }}' class="material-icons read"
                                         data-toggle="tooltip" data-placement="tooltip" title="Read">&#xE86D;</a>
                                     <a href='{{ url("/propietario/edit/{$propietario->id}") }}' class="material-icons edit"
                                         data-toggle="tooltip" data-placement="tooltip" title="Update">&#xE254;</a>
-
-                                    <a href='{{ url("/propietario/borrar/{$propietario->id}") }}' class="material-icons delete"
-                            data-id="{{ $propietario->id }}" data-toggle="tooltip" data-placement="tooltip"
-                            title="Delete">&#xE872;</a>
-
                                 </td>
                             </tr>
                         @endforeach
