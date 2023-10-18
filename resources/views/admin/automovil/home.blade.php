@@ -18,9 +18,16 @@
                     </div>
                 </div>
                 <div class="row filter">
-                    <div class="col-md-12 mt-4">
+                    <div class="col-md-8 mt-4">
                         <div class="input-group">
-                            <input type="text" oninput="search()" class="form-control" id="search" placeholder="Buscar..." wire:model="search">
+                            <input type="search" id="search" class="form-control" class="form-control"
+                                placeholder="Buscar por nombre ...." oninput="searchName()">
+                        </div>
+                    </div>
+                    <div class="col-md-4 mt-4">
+                        <div class="input-group">
+                            <input type="number" id="searchid" class="form-control" class="form-control"
+                                placeholder="Buscar por id ...." oninput="searchId()">
                         </div>
                     </div>
                 </div>
@@ -33,6 +40,7 @@
             <table class="table table-striped table-hover" id="table" style="margin: 50px 0">
                 <thead>
                     <tr>
+                        <th>Id</th>
                         <th>Marca</th>
                         <th>Modelo</th>
                         <th>Color</th>
@@ -46,6 +54,7 @@
                     @if (count($auto) > 0)
                         @foreach ($auto->all() as $auto)
                             <tr>
+                                <td>{{ $auto->id}}</td>
                                 <td>{{ $auto->marca }}</td>
                                 <td>{{ $auto->modelo }}</td>
                                 <td>{{ $auto->color }}</td>
@@ -69,6 +78,9 @@
                     @endif
                 </tbody>
             </table>
+            <div>
+                <p id="resultado"></p>
+            </div>
         </div>
     </div>
 
@@ -83,10 +95,33 @@
 
 @section('js')
     <script>
-        function search() {
+        function searchName() {
             var input = document.getElementById("search").value.toLowerCase();
             var table = document.getElementById("table");
             var tr = table.getElementsByTagName("tr");
+            var resultado = document.getElementById("resultado");
+            var count = 0;
+            for (var i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[6];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    txtValue = txtValue.toLowerCase();
+                    if (txtValue.indexOf(input) > -1) {
+                        //console.log(txtValue);
+                        tr[i].style.display = "";
+                        count++;
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+            resultado.innerHTML = "Se encontraron " + count + " coincidencias.";
+        }
+        function searchId() {
+            var input = document.getElementById("searchid").value.toLowerCase();
+            var table = document.getElementById("table");
+            var tr = table.getElementsByTagName("tr");
+
             for (var i = 0; i < tr.length; i++) {
                 td = tr[i].getElementsByTagName("td")[0];
                 if (td) {
@@ -100,6 +135,7 @@
                     }
                 }
             }
+
         }
     </script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

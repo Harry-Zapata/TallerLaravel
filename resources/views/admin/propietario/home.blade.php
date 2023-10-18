@@ -17,10 +17,16 @@
                     </div>
                 </div>
                 <div class="row filter">
-                    <div class="col-md-12 mt-4">
+                    <div class="col-md-8 mt-4">
                         <div class="input-group">
                             <input type="search" id="search" class="form-control" class="form-control"
-                                placeholder="Buscar..." oninput="search()">
+                                placeholder="Buscar por nombre ...." oninput="searchName()">
+                        </div>
+                    </div>
+                    <div class="col-md-4 mt-4">
+                        <div class="input-group">
+                            <input type="number" id="searchid" class="form-control" class="form-control"
+                                placeholder="Buscar por id ...." oninput="searchId()">
                         </div>
                     </div>
                 </div>
@@ -33,6 +39,7 @@
             <table class="table table-striped table-hover" id="table" style="margin: 50px 0">
                 <thead>
                     <tr class="text-center">
+                        <th>Id</th>
                         <th>Nombre</th>
                         <th>Documento</th>
                         <th>Dirección</th>
@@ -45,6 +52,7 @@
                     @if (count($propietario) > 0)
                         @foreach ($propietario->all() as $propietario)
                             <tr>
+                                <td>{{ $propietario->id }}</td>
                                 <td>{{ $propietario->nombre }}</td>
                                 <td>{{ $propietario->documento }}</td>
                                 <td>{{ $propietario->direccion }}</td>
@@ -75,8 +83,26 @@
 
 @section('js')
     <script>
-        function search() {
+        function searchName() {
             var input = document.getElementById("search").value.toLowerCase();
+            var table = document.getElementById("table");
+            var tr = table.getElementsByTagName("tr");
+            for (var i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    txtValue = txtValue.toLowerCase();
+                    if (txtValue.indexOf(input) > -1) {
+                        //console.log(txtValue);
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+        function searchId() {
+            var input = document.getElementById("searchid").value.toLowerCase();
             var table = document.getElementById("table");
             var tr = table.getElementsByTagName("tr");
             for (var i = 0; i < tr.length; i++) {
