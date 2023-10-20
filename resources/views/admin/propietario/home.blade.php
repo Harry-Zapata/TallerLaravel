@@ -32,7 +32,7 @@
                 </div>
             </div>
             @if (session('info'))
-                <div class="alert alert-success mt-4">
+                <div class="alert alert-success mt-4" id="alert">
                     {{ session('info') }}
                 </div>
             @endif

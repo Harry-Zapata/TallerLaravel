@@ -3,21 +3,21 @@
 @section('title', 'Automovil')
 
 @section('content')
-    <div style="margin: 50px 0">
-        <h2>Automovil {{$auto->id}}</h2>
-    </div>
-    <div style="font-family: 'Roboto', sans-serif;margin: 50px 0">
-        <h2><b>ID</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ $auto->id }}</h4>
-        <h4><b>Marca</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ $auto->marca }}</h4>
-        <h4><b>Modelo</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ $auto->modelo }}</h4>
-        <h4><b>Color</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ $auto->color }}</h4>
-        <h4><b>Tipo</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ $auto->tipo }}</h4>
-        <h4><b>Placa</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ $auto->placa }}</h4>
-        <h4><b>Propietario</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ $propietario->find($auto->idpropietario)->nombre }}</h4>
-    </div>
+    <x-adminlte-card title="Automovil {{ $auto->id }}" theme="purple" icon="fas fa-lg fa-car" collapsible>
+        <div style="height: 70vh" class="display-flex justify-content-between">
+            <h2><b>ID</b></h2><h5>{{ $auto->id }}</h5>
+            <h4><b>Marca</b></h4><h5>{{ $auto->marca }}</h5>
+            <h4><b>Modelo</b></h4><h5>{{ $auto->modelo }}</h5>
+            <h4><b>Color</b></h4><h5>{{ $auto->color }}</h5>
+            <h4><b>Tipo</b></h4><h5>{{ $auto->tipo }}</h5>
+            <h4><b>Placa</b></h4><h5>{{ $auto->placa }}</h5>
+            <h4><b>Propietario</b></h4><h5><a href="{{ url("/propietario/read/{$auto->idpropietario}") }}">{{ $propietario->find($auto->idpropietario)->nombre }}</a></h5>
+
+        </div>
+    </x-adminlte-card>
     <div>
-        <a href="{{ url('/automovil') }}" type="button" class="btn btn-info btn-lg float-left" data-dismiss="modal" value="cancel"
-            style="width: 100%">Atras</a>
+        <a href="{{ url('/automovil') }}" type="button" class="btn btn-info btn-lg float-left" data-dismiss="modal"
+            value="cancel" style="width: 100%">Atras</a>
     </div>
 
     @include('inc.footer')

@@ -3,19 +3,16 @@
 @section('title', 'Propietario')
 
 @section('content')
-    <div style="margin: 50px 0">
-        <h2>Propietario {{$propietario->id}}</h2>
+<x-adminlte-card title="Propietario {{$propietario->id}}" theme="purple" icon="fas fa-lg fa-car" collapsible>
+    <div style="height: 70vh" class="display-flex justify-content-between">
+        <h2><b>ID</b></h2><h5>{{ $propietario->id }}</h5>
+        <h4><b>Nombre</b></h4><h5>{{ $propietario->nombre }}</h5>
+        <h4><b>Documento</b></h4><h5>{{ $propietario->documento }}</h5>
+        <h4><b>Dirección</b></h4><h5>{{ $propietario->direccion }}</h5>
+        <h4><b>Teléfono</b></h4><h5>{{ $propietario->telefono }}</h5>
+        <h4><b>Email</b></h4><h5>{{ $propietario->email }}</h5>
     </div>
-    <div style="font-family: 'Roboto', sans-serif;margin: 50px 0">
-        <h2><b>ID</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ $propietario->id }}</h4>
-            <h4><b>Nombre</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ $propietario->nombre }}</h4>
-            <h4><b>Documento</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ $propietario->documento }}</h4>
-            <h4><b>Dirección</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ $propietario->direccion }}</h4>
-            <h4><b>Teléfono</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ $propietario->telefono }}</h4>
-            <h4><b>Email</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                {{ $propietario->email }}</h4>
-
-    </div>
+</x-adminlte-card>
     <div>
         <a href="{{ url('/propietario') }}" type="button" class="btn btn-info btn-lg float-left" data-dismiss="modal" value="cancel"
             style="width: 100%">Atras</a>
